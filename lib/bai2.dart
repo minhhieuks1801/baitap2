@@ -37,12 +37,6 @@ class _ghiChu extends State<bai2>{
 
                ElevatedButton(
                  onPressed: () async {
-                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                   for(int i = 0; i< 10; i++){
-                     await prefs.remove('$i');
-                   }
-                   await prefs.remove('count');
-                   setState(() {});
                  },
                  child: const Text('Chụp hình',
                    style: TextStyle(fontSize: 20, color: Colors.white),
@@ -54,8 +48,6 @@ class _ghiChu extends State<bai2>{
                ),
                ElevatedButton(
                  onPressed: () {
-                   _getSP();
-                   setState(() {});
                  },
                  child: const Text('Ghi âm',
                    style: TextStyle(fontSize: 20, color: Colors.white),
@@ -106,9 +98,9 @@ class _ghiChu extends State<bai2>{
 
   _getSP() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String>? listitems = prefs.getStringList('items');
+    List<String>? listitems = prefs.getStringList('items');
     list = listitems!;
-
+    setState(() {});
   }
 
   void duyet(){
@@ -136,7 +128,6 @@ class _ghiChu extends State<bai2>{
                 onPressed: () {
                   Navigator.of(context).pop();
                   list.add(_txtGhi.text);
-                  _getSP();
                   _setSP();
                   setState(() {});
                 },
